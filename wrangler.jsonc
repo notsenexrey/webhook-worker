@@ -1,0 +1,14 @@
+{
+    "name": "telegram",
+    "main": "src/index.js",
+    "compatibility_date": "2026-07-28",
+    "compatibility_flags": ["nodejs_compat"],
+    "workers_dev": true,
+    "preview_urls": false,
+    "observability": {
+        "enabled": true,
+        "logs": {
+            "enabled": true
+        }
+    }
+}
