@@ -1,11 +1,11 @@
-import { boot } from "../../bot"
+import { sendMessage } from "../../bot"
+import { escapeHtml } from "../../tool/escape"
 
 export default async function push(request, body, env) {
     try {
         const msg = log(body)
         if (msg) {
-            const bot = await boot(env)
-            await bot.api.sendMessage(env.CHAT_ID, msg, { parse_mode: 'HTML', link_preview_options: { is_disabled: true }, })
+            await sendMessage(env, msg, { parse_mode: 'HTML', link_preview_options: { is_disabled: true }, })
         }
     } catch (err) {
         console.error(err)
@@ -39,5 +39,5 @@ function commit(data) {
         hour12: false,
     }).format(new Date(data.author.date));
     const commitId = data.id.slice(0, 7)
-    return `<b>Commit</b> <a href="${data.url}">@${commitId}</a>\n<b>Author</b> <a href="https://github.com/${data.author.username}">${data.author.name}</a>\n<b>Message</b>\n<blockquote expandable>${data.message}</blockquote>\n<b>Date</b> ${time}\n<b>Changes</b> ${summarize}\n${changes}`
+    return `<b>Commit</b> <a href="${data.url}">@${commitId}</a>\n<b>Author</b> <a href="https://github.com/${data.author.username}">${data.author.name}</a>\n<b>Message</b>\n<blockquote expandable>${escapeHtml(data.message)}</blockquote>\n<b>Date</b> ${time}\n<b>Changes</b> ${summarize}\n${changes}`
 }

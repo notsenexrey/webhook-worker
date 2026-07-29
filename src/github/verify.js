@@ -1,4 +1,3 @@
-// const crypto = require('node:crypto');
 import crypto from "crypto"
 
 export default async function verify(request, env) {

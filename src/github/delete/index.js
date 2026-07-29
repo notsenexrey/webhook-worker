@@ -1,11 +1,10 @@
-import { boot } from "../../bot"
+import { sendMessage } from "../../bot"
 
 export default async function dlt(request, body, env) {
     try {
         const msg = log(body)
         if (msg) {
-            const bot = await boot(env)
-            await bot.api.sendMessage(env.CHAT_ID, msg, { parse_mode: 'HTML', link_preview_options: { is_disabled: true }, })
+            await sendMessage(env, msg, { parse_mode: 'HTML', link_preview_options: { is_disabled: true }, })
         }
     } catch (err) {
         console.error(err)

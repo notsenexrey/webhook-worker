@@ -1,11 +1,9 @@
-import { boot } from "../../bot"
+import { sendMessage } from "../../bot"
 
 export default async function ping(request, body, env) {
     try {
-        const bot = await boot(env)
         const msg = `Ping from "@${body.repository.full_name}"\n\n${body.zen}`
-        console.log("Pong!")
-        await bot.api.sendMessage(env.CHAT_ID, msg)
+        await sendMessage(env, msg, { parse_mode: 'HTML', link_preview_options: { is_disabled: true }, })
     } catch (err) {
         console.error(err)
         return new Response(`Error happened on sending a message to telegram chat`, { status: 500 })

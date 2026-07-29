@@ -1,4 +1,3 @@
-import { Bot, webhookCallback } from "grammy"
 import telegram from "./telegram"
 import github from "./github"
 
