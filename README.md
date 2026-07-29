@@ -7,4 +7,4 @@
 `npx wrangler login`
 
 4. deploy with
-`npx wrangler deploy --secret-file .env`
+`npx wrangler deploy --secrets-file .env`
